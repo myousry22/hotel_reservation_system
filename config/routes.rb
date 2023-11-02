@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  post '/api/register', to: 'api/users#register'
+  post '/api/login', to: 'api/users#login'
+  devise_for :users
   
+  
+
 end

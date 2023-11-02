@@ -11,6 +11,8 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: postgres://root:root@db:5432/hotel_reservation_sys
+    stdin_open: true
+    tty: true
   db:
     image: postgres:14
     environment:

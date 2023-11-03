@@ -1,13 +1,17 @@
 # USER MODEL
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
-
   JWT_ALGO = 'HS256'.freeze
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :jwt_authenticatable,
          jwt_revocation_strategy: self
 
+  # relations
+  has_and_belongs_to_many :roles
+
+
+  
   def generate_jwt_token
     exp = token_expired? ? 1.minutes.from_now : token_expires_at
 

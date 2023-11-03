@@ -15,15 +15,19 @@ class User < ApplicationRecord
       user_id: id,
       exp: exp.to_i
     }
-    token = JWT.encode(payload, Rails.application.secrets.secret_key_base, JWT_ALGO)
-    update(token_expires_at: exp)
-    token 
+    begin
+        token = JWT.encode(payload, Rails.application.secrets.secret_key_base, JWT_ALGO)
+        update(token_expires_at: exp)
+        token 
+    rescue JWT::EncodeError => e
+        Rails.logger.error("JWT Encode Error: #{e.message}")
+        nil
+    end
   end
 
   def token_expired?
    return true unless token_expires_at.present?
 
    Time.now >= token_expires_at
-  end
- 
+  end 
 end

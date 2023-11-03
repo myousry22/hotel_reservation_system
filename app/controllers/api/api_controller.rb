@@ -18,7 +18,8 @@ class Api::ApiController < ApplicationController
     def decode_token(token)
       begin
         JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: User::JWT_ALGO)
-      rescue JWT::DecodeError
+      rescue JWT::DecodeError => e
+        Rails.logger.error("JWT Decode Error: #{e.message}")
         nil
       end
     end

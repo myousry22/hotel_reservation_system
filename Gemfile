@@ -43,6 +43,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # for authentication purpose 
 gem 'devise'
 # for tokens generation
-# gem 'jwt'
+
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+
+# authorization
+gem 'pundit'

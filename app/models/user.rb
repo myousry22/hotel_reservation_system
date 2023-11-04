@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # relations
   has_and_belongs_to_many :roles
 
-
+  after_commit :assign_role, on: :create
   
   def generate_jwt_token
     exp = token_expired? ? 1.minutes.from_now : token_expires_at
@@ -34,4 +34,15 @@ class User < ApplicationRecord
 
    Time.now >= token_expires_at
   end 
+
+
+  private
+
+  def assign_role
+    roles << guest_user
+  end
+
+  def guest_user
+    Role.find_by(name: 'guest')
+  end
 end

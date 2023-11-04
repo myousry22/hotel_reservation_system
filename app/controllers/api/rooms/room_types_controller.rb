@@ -4,12 +4,13 @@ module Api
         class RoomTypesController < ApiController
             def index
                 @room_types = RoomType.all
+                authorize @room_types
                 render json: RoomTypeSerializer.new(@room_types).serializable_hash.to_json
             end
           
             def create
                 @room_type = RoomType.new(room_type_params)
-            
+                authorize @room_type
                 if @room_type.save
                   render json: serialize_room_type, status: :created
                 else
@@ -19,7 +20,7 @@ module Api
           
               def update
                 @room_type = RoomType.find(params[:id])
-            
+                authorize @room_type
                 if @room_type.update(room_type_params)
                   render json: serialize_room_type, status: :ok
                 else

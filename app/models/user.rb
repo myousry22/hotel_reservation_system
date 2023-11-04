@@ -8,9 +8,11 @@ class User < ApplicationRecord
          jwt_revocation_strategy: self
 
   # relations
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles, dependent: :destroy
 
+  # callbacks
   after_commit :assign_role, on: :create
+
   
   def generate_jwt_token
     exp = token_expired? ? 30.days.from_now : token_expires_at
@@ -35,6 +37,17 @@ class User < ApplicationRecord
    Time.now >= token_expires_at
   end 
 
+  def admin?
+    roles.find_by(name: 'admin')
+  end
+
+  def owner?
+    roles.find_by(name: 'owner')
+  end
+
+  def operator?
+    roles.find_by(name: 'operator')
+  end
 
   private
 
@@ -45,4 +58,5 @@ class User < ApplicationRecord
   def guest_user
     Role.find_by(name: 'guest')
   end
+
 end

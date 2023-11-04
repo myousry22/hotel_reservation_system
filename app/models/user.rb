@@ -13,7 +13,7 @@ class User < ApplicationRecord
   after_commit :assign_role, on: :create
   
   def generate_jwt_token
-    exp = token_expired? ? 1.minutes.from_now : token_expires_at
+    exp = token_expired? ? 30.days.from_now : token_expires_at
 
     payload = {
       user_id: id,

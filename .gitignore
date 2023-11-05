@@ -47,3 +47,4 @@
 
 # Ignore Puma control and socket files.
 /tmp/pids
+.byebug_history

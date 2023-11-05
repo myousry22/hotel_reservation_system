@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   # relations
   has_and_belongs_to_many :roles, dependent: :destroy
+  has_many :reservations
 
   # callbacks
   after_commit :assign_role, on: :create

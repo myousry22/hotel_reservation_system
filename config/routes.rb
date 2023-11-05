@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     get '/current_user', to: 'current_user#index'
     namespace :rooms, path: '/rooms' do 
       resources :room_types, only: [:create, :update, :index]
+      resources :reservations, only: [:create, :index] do 
+        collection do 
+          delete '/:id/cancel', to: 'reservations#cancel'
+        end
+      end
     end
   end
   

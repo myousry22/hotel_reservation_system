@@ -39,10 +39,12 @@ module Api
                 # Fetch all reservations when date range parameters are null
                 @reservations = Reservation.all
               end
-              
+
               if current_user.guest?
                 @reservations = @reservations.where(user_id: current_user.id)
               end
+
+              @reservations = @reservations.eager_load(:user, :room_type).select('reservations.*, room_types.description AS room_type_description, users.email AS user_email')
              
               render json: ReservationSerializer.new(@reservations).serializable_hash.to_json, status: :ok              
             end

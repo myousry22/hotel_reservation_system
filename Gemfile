@@ -49,3 +49,5 @@ gem 'jsonapi-serializer'
 
 # authorization
 gem 'pundit'
+
+gem 'interactor'

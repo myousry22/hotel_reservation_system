@@ -12,6 +12,11 @@ class Reservation < ApplicationRecord
                  .where('start_date < ? AND end_date > ?', end_date, start_date)
       }
 
+    scope :for_guest, ->(user) { where(user: user) }
+    scope :for_admin, -> { all }
+    scope :for_operator, -> { all }
+    scope :for_owner, -> { all }
+
     
 
     private

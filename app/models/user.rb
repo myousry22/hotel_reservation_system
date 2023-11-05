@@ -8,7 +8,7 @@ class User < ApplicationRecord
          jwt_revocation_strategy: self
 
   # relations
-  has_and_belongs_to_many :roles, dependent: :destroy
+  has_and_belongs_to_many :roles
   has_many :reservations
 
   # callbacks
@@ -49,6 +49,11 @@ class User < ApplicationRecord
   def operator?
     roles.find_by(name: 'operator')
   end
+
+  def guest?
+    roles.find_by(name: 'guest')
+  end
+
 
   private
 

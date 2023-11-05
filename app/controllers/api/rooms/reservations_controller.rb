@@ -20,6 +20,7 @@ module Api
           
             def cancel
                 @reservation = Reservation.find(params[:id])
+                authorize @reservation
                 @reservation.destroy!
                 render json: { message: 'The reservation canceled successfully' }, status: :ok
             rescue ActiveRecord::RecordNotDestroyed => e
@@ -30,6 +31,7 @@ module Api
             end
           
             def index
+              
               if params[:start_date].present? && params[:end_date].present?
                 # Fetch reservations for the specified date range
                 @reservations = Reservation.where("start_date >= ? AND end_date <= ?", params[:start_date], params[:end_date])
@@ -37,9 +39,12 @@ module Api
                 # Fetch all reservations when date range parameters are null
                 @reservations = Reservation.all
               end
-          
-              render json: ReservationSerializer.new(@reservations).serializable_hash.to_json, status: :ok
-      
+              
+              if current_user.guest?
+                @reservations = @reservations.where(user_id: current_user.id)
+              end
+             
+              render json: ReservationSerializer.new(@reservations).serializable_hash.to_json, status: :ok              
             end
           
             private

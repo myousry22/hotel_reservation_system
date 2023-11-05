@@ -30,10 +30,16 @@ module Api
             end
           
             def index
-              start_date = params[:start_date]
-              end_date = params[:end_date]
-              @reservations = Reservation.all
+              if params[:start_date].present? && params[:end_date].present?
+                # Fetch reservations for the specified date range
+                @reservations = Reservation.where("start_date >= ? AND end_date <= ?", params[:start_date], params[:end_date])
+              else
+                # Fetch all reservations when date range parameters are null
+                @reservations = Reservation.all
+              end
+          
               render json: ReservationSerializer.new(@reservations).serializable_hash.to_json, status: :ok
+      
             end
           
             private

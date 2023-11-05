@@ -4,7 +4,7 @@ class Reservation < ApplicationRecord
   
     validates :start_date, :end_date, :user_id, :room_type_id, presence: true
     validate :no_overlapping_reservations
-    # validate :valid_date_format, on: :create
+    validate :valid_date_format, on: :create
 
     # scopes 
     scope :overlapping_reservations, lambda { |start_date, end_date, room_type_id|
@@ -23,27 +23,15 @@ class Reservation < ApplicationRecord
     end
 
     def valid_date_format
-        date_format = /\A\d{4}-\d{2}-\d{2}\z/
-        
-        if start_date.present? && start_date !~ date_format
-          errors.add(:start_date, "must be in the format 'YYYY-MM-DD'")
-        end
     
-        if end_date.present? && end_date !~ date_format
-          errors.add(:end_date, "must be in the format 'YYYY-MM-DD'")
+        if start_date.present? && start_date < Date.today
+          errors.add(:start_date, "can't be in the past")
         end
+
+        if end_date.present? && end_date < Date.today
+          errors.add(:end_date, "can't be in the past")
+        end
+
     end
   
-    # def start_date 
-        # date_formatter(start_date)
-    # end
-
-    # def end_date
-        # date_formatter(end_date)
-    # end
-
-    def date_formatter(date)
-        parsed_date = Date.parse(date)
-        parsed_date.strftime('%Y-%m-%d')
-    end
 end

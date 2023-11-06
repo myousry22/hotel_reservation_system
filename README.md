@@ -60,7 +60,8 @@ AppSignal
 <img width="1424" alt="Screen Shot 2023-11-06 at 11 28 08 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/c8b0b5ce-9ce8-436e-8c39-30fe06e87dfb">
 
 DB diagram 
-<img width="772" alt="Screen Shot 2023-11-06 at 11 52 58 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/5f4555b1-c7c4-44e5-bcc2-aa1df697d0e5">
+<img width="903" alt="Screen Shot 2023-11-06 at 4 53 57 PM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/38e56bf3-32e7-4a29-b17b-90172ec9f554">
+
 
 Postman Collection
 https://drive.google.com/file/d/1eK0H1iWqEsz1mECn91l3_VJ2Q4vJO7rW/view?usp=sharing

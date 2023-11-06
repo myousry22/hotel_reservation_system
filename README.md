@@ -52,6 +52,9 @@ Things you may want to cover:
    3- copy the token and add it in any request you need to use in the headers with    
       Authorization -> Bearer {{token}}  in postman 
 
+<img width="1015" alt="Screen Shot 2023-11-06 at 1 08 11 PM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/b7e279f0-caae-480d-ba71-c0dfa86406d4">
+
+
 AppSignal
 <img width="1424" alt="Screen Shot 2023-11-06 at 11 27 00 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/0a8fc306-1e4c-4d50-990b-9c56c8162f7b">
 <img width="1424" alt="Screen Shot 2023-11-06 at 11 28 08 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/c8b0b5ce-9ce8-436e-8c39-30fe06e87dfb">

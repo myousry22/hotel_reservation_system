@@ -65,6 +65,8 @@ DB diagram
 Postman Collection
 https://drive.google.com/file/d/1eK0H1iWqEsz1mECn91l3_VJ2Q4vJO7rW/view?usp=sharing
 
+just download the file and click import in the top left in Postman to import the collection
+<img width="946" alt="Screen Shot 2023-11-06 at 1 26 46 PM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/d4c96feb-6a69-43ce-94af-0721212c95f4">
 
 
 * ...

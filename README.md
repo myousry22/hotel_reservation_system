@@ -5,20 +5,63 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.0.2, Rails v 6.1, DB Postgres 
 
 * System dependencies
+  - you should have docker installed on your machine 
 
-* Configuration
+* Configuration 
+  1- run docker-compose build
+  2- run docker-compose up   
 
 * Database creation
+  1- docker-compose exec web rails db:create
+  2- docker-compose exec web rails db:migrate
+  3- docker-compose exec web rails db:seed  
 
-* Database initialization
+* Docker Containers 
+  - web app 
+  - db 
 
-* How to run the test suite
+ 
+* core functionality 
+  - Users 
+    - register guest user 
+    - log in as a guest 
+    - system has three user roles [admin, operator, owner, guest] 
+  - Rooms
+    - create room type
+    - list room types
+    - update room type
+    - create a reservation
+    - list all reservation
+    - cancel a reservation
 
-* Services (job queues, cache servers, search engines, etc.)
+- the system has also authorization control by pundit gem
+- the system handles multiple users trying to reserve the same room type for
+  overlapping dates.
+- the system has a logging and monitoring integration with appsignal APM
 
-* Deployment instructions
+* the used gems 
+  - devise, jwt, appsignal, interactors, pundit, jsonapi-serializer
+
+* How to use the apis 
+ - in the Postman collection that i attached below 
+   1- use register API to add new guest account 
+   2- use login API to generate the auth token 
+   3- copy the token and add it in any request you need to use in the headers with    
+      Authorization -> Bearer {{token}}  in postman 
+
+AppSignal
+<img width="1424" alt="Screen Shot 2023-11-06 at 11 27 00 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/0a8fc306-1e4c-4d50-990b-9c56c8162f7b">
+<img width="1424" alt="Screen Shot 2023-11-06 at 11 28 08 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/c8b0b5ce-9ce8-436e-8c39-30fe06e87dfb">
+
+DB diagram 
+<img width="772" alt="Screen Shot 2023-11-06 at 11 52 58 AM" src="https://github.com/myousry22/hotel_reservation_system/assets/26511051/5f4555b1-c7c4-44e5-bcc2-aa1df697d0e5">
+
+Postman Collection
+https://drive.google.com/file/d/1eK0H1iWqEsz1mECn91l3_VJ2Q4vJO7rW/view?usp=sharing
+
+
 
 * ...
